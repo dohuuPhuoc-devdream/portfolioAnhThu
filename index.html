@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anh Thư Bui — Content & Marketing Operations Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+<style>
+  :root{
+    --paper:#F7F2E6;
+    --paper-alt:#EFE7D3;
+    --ink:#132039;
+    --ink-soft:#48547A;
+    --forest:#1E3A63;
+    --forest-deep:#0E1B33;
+    --gold:#B08B3F;
+    --line:#DED2AE;
+    --card:#FCF9F0;
+    --max:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Raleway',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--forest);color:var(--paper);}
+  h1,h2,h3,h4{font-family:'Raleway',sans-serif;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,245,239,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:var(--max);margin:0 auto;
+  }
+  .navrow .logo{font-family:'Raleway',sans-serif;font-weight:600;font-size:19px;}
+  .navrow .logo span{color:var(--forest);}
+  .navlinks{display:flex;gap:28px;list-style:none;}
+  .navlinks a{
+    font-size:13px;letter-spacing:0.04em;text-transform:uppercase;
+    text-decoration:none;color:var(--ink-soft);
+    font-weight:500;
+    transition:color .2s;
+  }
+  .navlinks a:hover{color:var(--forest);}
+  .navtoggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+
+  /* ---------- Hero / About ---------- */
+  header.hero{padding:72px 0 56px;}
+  .eyebrow{
+    font-family:'Raleway',sans-serif;font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--forest);margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--forest);display:inline-block;}
+  h1.title{font-size:clamp(36px,5vw,58px);line-height:1.08;max-width:820px;}
+  h1.title em{font-style:italic;color:var(--forest);}
+  .hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;margin-top:40px;align-items:start;}
+  .hero-text p{color:var(--ink-soft);font-size:16.5px;max-width:560px;margin-bottom:14px;}
+  .edu-card{
+    background:var(--card);border:1px solid var(--line);border-radius:2px;
+    padding:26px;position:relative;
+  }
+  .edu-card::before{
+    content:"EDUCATION";
+    font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:0.14em;
+    color:var(--gold);display:block;margin-bottom:12px;
+  }
+  .edu-card h3{font-size:19px;margin-bottom:4px;}
+  .edu-card .meta{font-size:13px;color:var(--ink-soft);margin-bottom:14px;}
+  .edu-card ul{list-style:none;font-size:14px;color:var(--ink-soft);}
+  .edu-card li{padding-left:16px;position:relative;margin-bottom:6px;}
+  .edu-card li::before{content:"—";position:absolute;left:0;color:var(--gold);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:64px 0;border-top:1px solid var(--line);}
+  section, header.hero, footer{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+  }
+  section.in-view, header.hero.in-view, footer.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap;}
+  .sec-num{font-family:'Raleway',sans-serif;color:var(--gold);font-size:13px;}
+  .sec-head h2{font-size:clamp(26px,3.5vw,34px);}
+  .sec-sub{color:var(--ink-soft);font-size:14.5px;max-width:520px;margin-top:6px;}
+
+  /* ---------- Skills ---------- */
+  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;}
+  .skill-card{border:1px solid var(--line);background:var(--card);padding:22px 22px 24px;border-radius:2px;}
+  .skill-card h4{font-size:15px;font-family:'Raleway',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;color:var(--forest-deep);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .chiplist{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:12.5px;background:var(--paper-alt);border:1px solid var(--line);
+    padding:6px 11px;border-radius:20px;color:var(--ink);
+  }
+
+  /* ---------- Experience ---------- */
+  .exp-header{
+    background:var(--forest-deep);color:var(--paper);
+    padding:26px 28px;border-radius:2px;margin-bottom:8px;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;
+  }
+  .exp-header h3{color:var(--paper);font-size:22px;}
+  .exp-header .role{font-family:'Raleway',sans-serif;font-size:12px;color:#D6CFB4;letter-spacing:.04em;}
+  .exp-block{border:1px solid var(--line);border-top:none;background:var(--card);}
+  .exp-row{
+    display:grid;grid-template-columns:220px 1fr;gap:24px;
+    padding:26px 28px;border-bottom:1px solid var(--line);
+  }
+  .exp-row:last-child{border-bottom:none;}
+  .exp-row .label{font-family:'Raleway',sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);padding-top:3px;}
+  .exp-row ul{list-style:none;}
+  .exp-row li{position:relative;padding-left:18px;margin-bottom:9px;font-size:14.5px;color:var(--ink-soft);}
+  .exp-row li::before{content:"›";position:absolute;left:0;color:var(--forest);font-weight:700;}
+  .exp-row li strong{color:var(--ink);font-weight:600;}
+  .stat-inline{
+    display:inline-block;font-family:'Raleway',sans-serif;background:var(--paper-alt);
+    color:var(--forest-deep);padding:1px 7px;border-radius:3px;font-size:13px;font-weight:600;
+  }
+
+  /* ---------- Portfolio ---------- */
+  .portfolio-subhead{
+    font-family:'Raleway',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);margin:36px 0 18px;display:flex;align-items:center;gap:12px;
+  }
+  .portfolio-subhead::after{content:"";flex:1;height:1px;background:var(--line);}
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;}
+  .proj-card{
+    border:1px solid var(--line);background:var(--card);border-radius:2px;
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+  }
+  .proj-card .tag{
+    font-family:'Raleway',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--forest);background:#E1D6BC;display:inline-block;padding:3px 8px;border-radius:2px;width:fit-content;
+  }
+  .proj-card h4{font-size:18px;line-height:1.3;}
+  .proj-card .role-line{font-size:12.5px;color:var(--gold);font-weight:600;font-family:'Raleway',sans-serif;}
+  .proj-card p{font-size:14px;color:var(--ink-soft);}
+  .proj-card .impact{
+    margin-top:auto;border-top:1px dashed var(--line);padding-top:12px;font-size:13.5px;color:var(--forest-deep);font-weight:600;
+  }
+  .flagship{
+    border:1px solid var(--forest);grid-column:1 / -1;
+    display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;background:var(--card);border-radius:2px;
+  }
+  .flagship .fs-side{background:var(--forest-deep);color:var(--paper);padding:30px;display:flex;flex-direction:column;justify-content:space-between;}
+  .flagship .fs-side .tag{background:rgba(255,255,255,0.12);color:#E6DCC0;}
+  .flagship .fs-side h4{color:var(--paper);font-size:22px;margin:10px 0 6px;}
+  .flagship .fs-side .role-line{color:#D8B45E;}
+  .flagship .fs-body{padding:30px;}
+  .flagship .fs-body ul{list-style:none;margin-bottom:16px;}
+  .flagship .fs-body li{position:relative;padding-left:18px;margin-bottom:9px;font-size:14px;color:var(--ink-soft);}
+  .flagship .fs-body li::before{content:"›";position:absolute;left:0;color:var(--forest);font-weight:700;}
+  .stat-row{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;}
+  .stat-box{font-family:'Raleway',sans-serif;}
+  .stat-box .num{font-size:24px;font-weight:600;color:var(--gold);display:block;}
+  .stat-box .lbl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#D6CFB4;}
+
+  /* ---------- Contact ---------- */
+  footer{
+    background:var(--forest-deep);color:var(--paper);padding:64px 0 40px;margin-top:20px;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px;}
+  footer h2{color:var(--paper);font-size:clamp(28px,4vw,40px);max-width:480px;}
+  footer .cta-line{color:#D6CFB4;margin-top:12px;font-size:15px;max-width:440px;}
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .contact-list li{font-size:14.5px;}
+  .contact-list .k{
+    font-family:'Raleway',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);display:block;margin-bottom:3px;
+  }
+  .contact-list a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.25);}
+  .contact-list a:hover{border-color:var(--gold);color:var(--gold);}
+  .foot-bottom{
+    max-width:var(--max);margin:48px auto 0;padding:20px 32px 0;border-top:1px solid rgba(255,255,255,0.15);
+    font-size:12px;color:#A79E82;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    section, header.hero, footer{
+      opacity:1 !important;
+      transform:none !important;
+      transition:none !important;
+    }
+  }
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .exp-row{grid-template-columns:1fr;gap:8px;}
+    .flagship{grid-template-columns:1fr;}
+    .navlinks{
+      position:absolute;top:100%;left:0;right:0;background:var(--paper);
+      flex-direction:column;padding:16px 32px;gap:14px;border-bottom:1px solid var(--line);
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navtoggle{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navrow">
+    <div class="logo">Anh Thư<span>.</span></div>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="navtoggle" id="navtoggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ============ 1. ABOUT ME ============ -->
+<header class="hero" id="about">
+  <div class="wrap">
+    <div class="eyebrow">Content & Marketing Operations</div>
+    <h1 class="title">I turn <em>marketing strategy</em> into content people actually stop for.</h1>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p>I'm Anh Thư — a Marketing graduate who has spent the last year inside a real brand communications engine, moving from content idea to published asset to campaign report, week after week. I'm comfortable writing the post, briefing the designer, running the numbers, and closing the loop with a monthly recap.</p>
+        <p>I'm currently looking for a Content / Marketing Operations role where I can own that full loop — ideally somewhere with an international, multi-service scope, where communication has to work across audiences and markets at once.</p>
+      </div>
+      <div class="edu-card">
+        <h3>UEH-ISB Honours College</h3>
+        <div class="meta">Bachelor of Marketing — Ho Chi Minh City</div>
+        <ul>
+          <li>Honours College track, selective academic program</li>
+          <li>Coursework anchored in brand strategy, IMC planning &amp; consumer behaviour</li>
+          <li>Active member, ISB Academic Team — event &amp; content leadership</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 2. PERSONAL SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Personal Skills</h2>
+    </div>
+    <p class="sec-sub" style="margin-top:-24px;margin-bottom:32px;">The toolkit behind every campaign — from the first content brief to the monthly report.</p>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h4>Content &amp; Copywriting</h4>
+        <div class="chiplist">
+          <span class="chip">Social copywriting</span>
+          <span class="chip">PR articles</span>
+          <span class="chip">SEO blog content</span>
+          <span class="chip">Newsletters &amp; EDM</span>
+          <span class="chip">Editorial calendar planning</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Marketing Operations</h4>
+        <div class="chiplist">
+          <span class="chip">Campaign execution</span>
+          <span class="chip">Weekly comms planning</span>
+          <span class="chip">Cross-team coordination</span>
+          <span class="chip">Event logistics</span>
+          <span class="chip">Vendor / agency liaison</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Digital &amp; Platforms</h4>
+        <div class="chiplist">
+          <span class="chip">WordPress CMS</span>
+          <span class="chip">LinkedIn management</span>
+          <span class="chip">Fanpage management</span>
+          <span class="chip">Meta Business Suite</span>
+          <span class="chip">Canva / design briefing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Analytics &amp; Reporting</h4>
+        <div class="chiplist">
+          <span class="chip">Engagement analysis</span>
+          <span class="chip">Monthly performance recap</span>
+          <span class="chip">Content niche research</span>
+          <span class="chip">Lead tracking support</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Working Style</h4>
+        <div class="chiplist">
+          <span class="chip">Stakeholder communication</span>
+          <span class="chip">Deadline-driven</span>
+          <span class="chip">Detail-oriented</span>
+          <span class="chip">Bilingual — EN / VN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Experience</h2>
+    </div>
+    <p class="sec-sub" style="margin-top:-24px;margin-bottom:32px;">One year, one seat inside a corporate marketing engine — organised the way the role itself is structured.</p>
+
+    <div class="exp-header">
+      <div>
+        <h3>FPT Smart Cloud</h3>
+        <div class="role">Brand Communications &amp; Product Marketing Intern</div>
+      </div>
+      <div class="role">Mar 2025 – Apr 2026</div>
+    </div>
+
+    <div class="exp-block">
+      <div class="exp-row">
+        <div class="label">Brand &amp; Content</div>
+        <ul>
+          <li>Produced marketing assets across owned channels — <strong>LinkedIn, website, Fanpage</strong> — plus event collateral: brochures, whitepapers, POSM and presentations.</li>
+          <li>Rebuilt the content strategy framework around four pillars: <strong>Business, Technology, People, Events</strong>, and translated it into a monthly editorial calendar.</li>
+          <li>Managed and published on the company website via <strong>WordPress</strong>; contributed concept and copywriting for the FPT Data Suite website redesign.</li>
+        </ul>
+      </div>
+      <div class="exp-row">
+        <div class="label">Social &amp; Growth</div>
+        <ul>
+          <li>Owned LinkedIn and Fanpage content, researching audience preference to keep engagement on trend.</li>
+          <li>Designed and ran a National Day (2/9) mini-game activation that reached <span class="stat-inline">5,000</span> organic reach and <span class="stat-inline">1,000+</span> reactions/comments — growing the Fanpage from <span class="stat-inline">9K → 10K+</span> followers in 3 days.</li>
+        </ul>
+      </div>
+      <div class="exp-row">
+        <div class="label">Campaign &amp; Lead Gen</div>
+        <ul>
+          <li>Led content strategy and weekly communication plan for the <strong>FPT Data Suite launch campaign</strong>, aligning weekly with Sales and Product on lead status and messaging.</li>
+          <li>Delivered market-trend and product-feature social content plus SEO blog posts that supported <span class="stat-inline">500+</span> active Portal users.</li>
+        </ul>
+      </div>
+      <div class="exp-row">
+        <div class="label">Events</div>
+        <ul>
+          <li>Owned end-to-end execution — concept, content writing, POSM, onsite monitoring — for internal events and 10 client signing ceremonies, incl. PR write-ups and agency-produced testimonial videos.</li>
+        </ul>
+      </div>
+      <div class="exp-row">
+        <div class="label">Reporting</div>
+        <ul>
+          <li>Presented monthly communications review to FPT Corp's group communications board; used Meta Business Suite data to identify new content angles.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. WORK PORTFOLIO ============ -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Work Portfolio</h2>
+    </div>
+    <p class="sec-sub" style="margin-top:-24px;">Selected work that shows the range — from a corporate campaign at scale to self-driven projects built outside the job description.</p>
+
+    <!-- Flagship case study -->
+    <div class="portfolio-subhead">Flagship case study</div>
+    <div class="proj-grid">
+      <div class="flagship">
+        <div class="fs-side">
+          <div>
+            <span class="tag">Corporate Event Leadership</span>
+            <h4>FPT Smart Cloud 5th Anniversary — Company-wide Sports Series</h4>
+            <div class="role-line">Co-coordinator, Communications &amp; Sports Activation</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-box"><span class="num">1,000+</span><span class="lbl">Employees</span></div>
+          </div>
+        </div>
+        <div class="fs-body">
+          <ul>
+            <li>Owned the overall communications plan for the anniversary series, translating the CEO's key message into a coherent narrative across every touchpoint.</li>
+            <li>Led coordination of the company-wide sports activation: concept, POSM, event budget and game formats.</li>
+            <li>Managed team logistics across departments, tracked results and wrap-ups per round.</li>
+            <li>Produced onsite photography and turned each round into published communications within days.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corporate events, supporting -->
+    <div class="portfolio-subhead">Other corporate events</div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <span class="tag">Sports Comms</span>
+        <h4>Internal Sports Tournament Coverage</h4>
+        <div class="role-line">Communications Lead</div>
+        <p>Followed athletes on-site match day, shot real-time photography, and turned coverage into published content within 24 hours of each match.</p>
+        <div class="impact">Consistent 24h publish turnaround</div>
+      </div>
+      <div class="proj-card">
+        <span class="tag">Client Events</span>
+        <h4>Signing Ceremonies &amp; Partnerships</h4>
+        <div class="role-line">Onsite Execution &amp; PR</div>
+        <p>Supported 10 client signing ceremonies end-to-end: onsite coordination, PR articles, brochure prep, whitepaper editing, and briefing an external agency for testimonial video production.</p>
+        <div class="impact">10 events delivered</div>
+      </div>
+    </div>
+
+    <!-- University / extracurricular -->
+    <div class="portfolio-subhead">University &amp; extracurricular projects</div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <span class="tag">Startup Marketing</span>
+        <h4>F&amp;B Startup Marketing Communications</h4>
+        <div class="role-line">Content Strategist</div>
+        <p>Built brand awareness from scratch for a simulated F&amp;B startup on social media, designing content to reach new customers and convert into product purchases.</p>
+        <div class="impact">Awareness → conversion pipeline built solo</div>
+      </div>
+      <div class="proj-card">
+        <span class="tag">Brand Activation</span>
+        <h4>Highlands Coffee — GenZ Repositioning Campaign</h4>
+        <div class="role-line">Marketing Planner</div>
+        <p>Developed a brand activation campaign to reposition Highlands Coffee in Gen Z perception and drive store visits, as part of a competitive brand planning exercise.</p>
+        <div class="impact">Full campaign plan, GenZ-focused</div>
+      </div>
+      <div class="proj-card">
+        <span class="tag">Event Leadership</span>
+        <h4>Youth Forum on Economics 2024</h4>
+        <div class="role-line">Lead, Content &amp; Logistics</div>
+        <p>Owned end-to-end execution for this ISB Academic Team competition — email marketing, logistics, judges &amp; contestant management, and exam content across rounds. Monitored the final Gala night.</p>
+        <div class="impact">60 teams → 3 finalists · Gala night, 1,000 attendees, 5 judges</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. CONTACT ============ -->
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Let's build the next campaign.</h2>
+      <p class="cta-line">Open to Content and Marketing Operations roles — happy to walk through any project above in more detail.</p>
+    </div>
+    <ul class="contact-list">
+      <li><span class="k">Email</span><a href="mailto:thubui.mkt@gmail.com">thubui.mkt@gmail.com</a></li>
+      <li><span class="k">Phone</span><a href="tel:+84964487731">(+84) 096 448 7731</a></li>
+      <li><span class="k">LinkedIn</span><a href="https://linkedin.com/in/thubuimkt/" target="_blank">linkedin.com/in/thubuimkt</a></li>
+      <li><span class="k">Location</span>Ho Chi Minh City, Vietnam</li>
+    </ul>
+  </div>
+  <div class="foot-bottom">
+    <span>Anh Thư Bui — Content &amp; Marketing Operations Portfolio</span>
+    <span>Updated 2026</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navtoggle').addEventListener('click', function(){
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.navlinks a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('navlinks').classList.remove('open');
+    });
+  });
+
+  var revealTargets = document.querySelectorAll('header.hero, section, footer');
+  if('IntersectionObserver' in window){
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealTargets.forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in-view'); });
+  }
+</script>
+
+</body>
+</html>
